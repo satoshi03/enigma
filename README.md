@@ -4,7 +4,7 @@ A simple implemention of Enigma (a cipher device used in the early- to mid-20th 
 
 ## How to run
 
-```.python
+```python
 from enigma import Enigma, EnigmaConfig
 
 # Generate config with random parameters
