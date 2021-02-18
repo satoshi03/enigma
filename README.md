@@ -1,10 +1,10 @@
 # Enigma
 
-A simple implemention of Enigma (a cipher device) in Python.
+A simple implemention of Enigma (a cipher device used in the early- to mid-20th century) in Python.
 
-# How to run
+## How to run
 
-```
+```.python
 from enigma import Enigma, EnigmaConfig
 
 # Generate config with random parameters
@@ -23,6 +23,14 @@ dec = enigma.decode(enc)
 print(dec)
 ```
 
-# License
+Then, output result in command line.
+
+```
+PGMMT FTUMA
+HELLO WORLD
+```
+
+
+## License
 
 MIT License
