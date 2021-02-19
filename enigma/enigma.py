@@ -14,10 +14,10 @@ class Enigma(Encoder):
         self._scrambler_1 = Scrambler(Scrambler1RotateRule(),
                                       config._scrambler_1_counter_num,
                                       config._scrambler_1_exchange_map)
-        self._scrambler_2 = Scrambler(Scrambler2RotateRule(4),
+        self._scrambler_2 = Scrambler(Scrambler2RotateRule(),
                                       config._scrambler_2_counter_num,
                                       config._scrambler_2_exchange_map)
-        self._scrambler_3 = Scrambler(Scrambler3RotateRule(4),
+        self._scrambler_3 = Scrambler(Scrambler3RotateRule(),
                                       config._scrambler_3_counter_num,
                                       config._scrambler_3_exchange_map)
         self._reflector = Reflector()

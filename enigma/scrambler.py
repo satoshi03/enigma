@@ -3,7 +3,7 @@ from .base import Encoder
 
 
 class RotateRule():
-    def __init__(self, n=0):
+    def __init__(self, n=4):
         self._n = n
 
     def is_rotate(self, encode_num):
