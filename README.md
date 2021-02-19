@@ -18,7 +18,7 @@ $ export PYTHONPATH=`pwd`
 Run example script.
 
 ```
-$ python examples/run.py
+$ python examples/run.py 'HELLO WORLD'
 ```
 
 Then, output result in command line.
@@ -28,12 +28,33 @@ PGMMT FTUMA
 HELLO WORLD
 ```
 
+This example script configures Enigma setting randomly everytime.
+Therefore, encoded strings are different everytime.
+
 ## Run with config
 
-If you want to set config, you can refer to following example script.
+If you want to use specifc Enigma setting, you can refer to following example script.
 
 ```
-$ python examples/run_with_config.py
+$ python examples/run_with_config.py 'HELLO WORLD'
+```
+
+This example script outputs same result as long as a config is same.
+
+```
+ZTPCE NBHVB
+```
+
+Decrypt string using the result.
+
+```
+$ python examples/run_with_config.py 'ZTPCE NBHVB'
+```
+
+Then, you can get decrypted string.
+
+```
+HELLO WORLD
 ```
 
 
