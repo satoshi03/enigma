@@ -17,6 +17,34 @@ class EnigmaConfig():
         self._scrambler_2_counter_num = scrambler_2_counter_num
         self._scrambler_3_counter_num = scrambler_3_counter_num
 
+    @property
+    def plug_board_exchange_map(self):
+        return self._plug_board_exchange_map
+
+    @property
+    def scrambler_1_exchange_map(self):
+        return self._scrambler_1_exchange_map
+
+    @property
+    def scrambler_2_exchange_map(self):
+        return self._scrambler_2_exchange_map
+
+    @property
+    def scrambler_3_exchange_map(self):
+        return self._scrambler_3_exchange_map
+
+    @property
+    def scrambler_1_counter_num(self):
+        return self._scrambler_1_counter_num
+
+    @property
+    def scrambler_2_counter_num(self):
+        return self._scrambler_2_counter_num
+
+    @property
+    def scrambler_3_counter_num(self):
+        return self._scrambler_3_counter_num
+
     def to_dict(self):
         return {
             'plug_board': {

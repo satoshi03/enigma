@@ -10,16 +10,16 @@ from .common import Order
 class Enigma(Encoder):
 
     def __init__(self, config):
-        self._plug_board = PlugBoard(config._plug_board_exchange_map)
+        self._plug_board = PlugBoard(config.plug_board_exchange_map)
         self._scrambler_1 = Scrambler(Scrambler1RotateRule(),
-                                      config._scrambler_1_counter_num,
-                                      config._scrambler_1_exchange_map)
+                                      config.scrambler_1_counter_num,
+                                      config.scrambler_1_exchange_map)
         self._scrambler_2 = Scrambler(Scrambler2RotateRule(),
-                                      config._scrambler_2_counter_num,
-                                      config._scrambler_2_exchange_map)
+                                      config.scrambler_2_counter_num,
+                                      config.scrambler_2_exchange_map)
         self._scrambler_3 = Scrambler(Scrambler3RotateRule(),
-                                      config._scrambler_3_counter_num,
-                                      config._scrambler_3_exchange_map)
+                                      config.scrambler_3_counter_num,
+                                      config.scrambler_3_exchange_map)
         self._reflector = Reflector()
 
     def encode(self, value):
