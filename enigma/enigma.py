@@ -2,16 +2,7 @@ import copy
 import random
 
 class Encoder():
-    def encode(self, value, order):
-        s = ''
-        for c in value:
-            if c == ' ':
-                s += ' '
-            else:
-                s += self._encode_char(c, order)
-        return s
-
-    def _encode_char(self, char):
+    def encode_char(self, char, order):
         return char
 
     def _to_index(self, char):
@@ -85,24 +76,25 @@ class Enigma(Encoder):
         self._reflector = Reflector()
 
     def encode(self, value):
-        value = self._plug_board.encode(value, Order.Forward)
-        value = self._scrambler_1.encode(value, Order.Forward)
-        value = self._scrambler_2.encode(value, Order.Forward)
-        value = self._scrambler_3.encode(value, Order.Forward)
-        value = self._reflector.encode(value, Order.Forward)
-        value = self._scrambler_3.encode(value, Order.Backward)
-        value = self._scrambler_2.encode(value, Order.Backward)
-        value = self._scrambler_1.encode(value, Order.Backward)
-        value = self._plug_board.encode(value, Order.Backward)
+        s = ''
+        for c in value:
+            if c == ' ':
+                s += ' '
+            else:
+                s += self.encode_char(c)
+        return s
 
-        if self._scrambler_1.is_rotate():
-            self._scrambler_1.rotate(1)
-        if self._scrambler_2.is_rotate():
-            self._scrambler_2.rotate(1)
-        if self._scrambler_3.is_rotate():
-            self._scrambler_3.rotate(1)
-
-        return value
+    def encode_char(self, c):
+        c = self._plug_board.encode_char(c, Order.Forward)
+        c = self._scrambler_1.encode_char(c, Order.Forward)
+        c = self._scrambler_2.encode_char(c, Order.Forward)
+        c = self._scrambler_3.encode_char(c, Order.Forward)
+        c = self._reflector.encode_char(c, Order.Forward)
+        c = self._scrambler_3.encode_char(c, Order.Backward)
+        c = self._scrambler_2.encode_char(c, Order.Backward)
+        c = self._scrambler_1.encode_char(c, Order.Backward)
+        c = self._plug_board.encode_char(c, Order.Backward)
+        return c
 
     def decode(self, value):
         return self.encode(value)
@@ -115,7 +107,7 @@ class PlugBoard(Encoder):
     def _get_reverse_exchange_map(self):
         return {v: k for k, v in self._exchange_map.items()}
 
-    def _encode_char(self, char, order):
+    def encode_char(self, char, order):
         exchange_map = self._exchange_map
         if order == Order.Backward:
             exchange_map = self._get_reverse_exchange_map()
@@ -129,23 +121,23 @@ class RotateRule():
     def __init__(self, n=0):
         self._n = n
 
-    def is_rotate(self, rotate_num):
+    def is_rotate(self, encode_num):
         return True
 
 
 class Scrambler1RotateRule(RotateRule):
-    def is_rotate(self, rotate_num):
+    def is_rotate(self, encode_num):
         return True
 
 
 class Scrambler2RotateRule(RotateRule):
-    def is_rotate(self, rotate_num):
-        return rotate_num % self._n == 0
+    def is_rotate(self, encode_num):
+        return encode_num % self._n == 0
 
 
 class Scrambler3RotateRule(RotateRule):
-    def is_rotate(self, rotate_num):
-        return rotate_num % pow(self._n, 2) == 0
+    def is_rotate(self, encode_num):
+        return encode_num % pow(self._n, 2) == 0
 
 
 class Scrambler(Encoder):
@@ -153,36 +145,40 @@ class Scrambler(Encoder):
         self._rotate_rule = rotate_rule
         self._counter = counter
         self._exchange_map = exchange_map
-        self.rotate(self._counter)
         self._rotate_num = 0
-        return
+        self._encode_num = 0
+        self.rotate(self._counter)
 
     def _get_reverse_exchange_map(self):
         return {v: k for k, v in self._exchange_map.items()}
 
-    def _encode_char(self, char, order):
+    def encode_char(self, char, order):
         exchange_map = self._exchange_map
         if order == Order.Backward:
             exchange_map = self._get_reverse_exchange_map()
         r = exchange_map.get(char)
-        self._rotate_num += 1
+        if order == Order.Backward:
+            self._encode_num += 1
+            if self.is_rotate():
+                self.rotate(1)
         return r
 
     def is_rotate(self):
-        return self._rotate_rule.is_rotate(self._rotate_num)
+        return self._rotate_rule.is_rotate(self._encode_num)
 
     def rotate(self, num):
         for i in range(0, num):
             self._exchange_map = {
                 k: self._exchange_map[chr(ord(k)-1) if ord(k) > ord('A') else 'Z']
                 for k, v in self._exchange_map.items()}
+            self._rotate_num += 1
 
 
 class Reflector(Encoder):
     def __init__(self):
         self._exchange_list = [i for i in range(25, -1, -1)]
 
-    def _encode_char(self, char, order):
+    def encode_char(self, char, order):
         index = self._to_index(char)
         encoded_index = self._exchange_list[index]
         return self._to_char(encoded_index)
