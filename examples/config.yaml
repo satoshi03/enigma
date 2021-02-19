@@ -1,0 +1,95 @@
+plug_board:
+  exchange_map:
+    A: L
+    B: X
+    C: J
+    J: C
+    L: A
+    X: B
+scrambler_1:
+  counter_num: 10
+  exchange_map:
+    A: Q
+    B: T
+    C: X
+    D: L
+    E: E
+    F: G
+    G: Z
+    H: J
+    I: A
+    J: K
+    K: Y
+    L: U
+    M: N
+    N: V
+    O: F
+    P: O
+    Q: B
+    R: S
+    S: C
+    T: P
+    U: R
+    V: H
+    W: I
+    X: M
+    Y: W
+    Z: D
+scrambler_2:
+  counter_num: 0
+  exchange_map:
+    A: M
+    B: X
+    C: Y
+    D: U
+    E: L
+    F: S
+    G: D
+    H: O
+    I: K
+    J: I
+    K: G
+    L: N
+    M: B
+    N: Z
+    O: Q
+    P: C
+    Q: H
+    R: V
+    S: W
+    T: A
+    U: E
+    V: F
+    W: R
+    X: J
+    Y: T
+    Z: P
+scrambler_3:
+  counter_num: 24
+  exchange_map:
+    A: Q
+    B: C
+    C: Y
+    D: P
+    E: A
+    F: L
+    G: G
+    H: V
+    I: D
+    J: W
+    K: F
+    L: X
+    M: E
+    N: O
+    O: Z
+    P: I
+    Q: B
+    R: T
+    S: K
+    T: J
+    U: R
+    V: U
+    W: N
+    X: H
+    Y: S
+    Z: M

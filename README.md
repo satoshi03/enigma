@@ -2,25 +2,23 @@
 
 A simple implemention of Enigma (a cipher device used in the early- to mid-20th century) in Python.
 
-## How to run
+This program currently supports UPPERCASE ALPHABETS like `HELLO WORLD`.
 
-```python
-from enigma import Enigma, EnigmaConfig
 
-# Generate config with random parameters
-config = EnigmaConfig.random()
+## Getting Started
 
-# Init enigma
-enigma = Enigma(config)
-# Encrypt code
-enc = enigma.encode('HELLO WORLD')
-print(enc)
+Clone repository and set PYTHONPATH to project dir.
 
-# Init enigma
-enigma = Enigma(config)
-# Decrypt code (Actuall, same imple as encode)
-dec = enigma.decode(enc)
-print(dec)
+```
+$ git clone git@github.com:satoshi03/enigma.git
+$ cd enigma
+$ export PYTHONPATH=`pwd`
+```
+
+Run example script.
+
+```
+$ python examples/run.py
 ```
 
 Then, output result in command line.
@@ -28,6 +26,14 @@ Then, output result in command line.
 ```
 PGMMT FTUMA
 HELLO WORLD
+```
+
+## Run with config
+
+If you want to set config, you can refer to following example script.
+
+```
+$ python examples/run_with_config.py
 ```
 
 
