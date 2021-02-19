@@ -1,3 +1,5 @@
+import re
+
 from .base import Encoder
 from .scrambler import Scrambler, Scrambler1RotateRule, Scrambler2RotateRule, Scrambler3RotateRule
 from .plugboard import PlugBoard
@@ -23,10 +25,10 @@ class Enigma(Encoder):
     def encode(self, value):
         s = ''
         for c in value:
-            if c == ' ':
-                s += ' '
-            else:
+            if re.search("[A-Z]", c):
                 s += self.encode_char(c)
+            else:
+                s += c
         return s
 
     def encode_char(self, c):
