@@ -15,6 +15,12 @@ $ cd enigma
 $ export PYTHONPATH=`pwd`
 ```
 
+Install dependencies.
+
+```
+$ pip install -r requirements.txt
+```
+
 Run example script.
 
 ```
