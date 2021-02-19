@@ -1,1 +1,2 @@
-from .enigma import Enigma, EnigmaConfig
+from .enigma import Enigma
+from .config import EnigmaConfig
