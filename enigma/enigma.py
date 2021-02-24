@@ -32,15 +32,15 @@ class Enigma(Encoder):
         return s
 
     def encode_char(self, c):
-        c = self._plug_board.encode_char(c, Order.Forward)
-        c = self._scrambler_1.encode_char(c, Order.Forward)
-        c = self._scrambler_2.encode_char(c, Order.Forward)
-        c = self._scrambler_3.encode_char(c, Order.Forward)
-        c = self._reflector.encode_char(c, Order.Forward)
-        c = self._scrambler_3.encode_char(c, Order.Backward)
-        c = self._scrambler_2.encode_char(c, Order.Backward)
-        c = self._scrambler_1.encode_char(c, Order.Backward)
-        c = self._plug_board.encode_char(c, Order.Backward)
+        c = self._plug_board.encode_char(c, Order.FORWARD)
+        c = self._scrambler_1.encode_char(c, Order.FORWARD)
+        c = self._scrambler_2.encode_char(c, Order.FORWARD)
+        c = self._scrambler_3.encode_char(c, Order.FORWARD)
+        c = self._reflector.encode_char(c, Order.FORWARD)
+        c = self._scrambler_3.encode_char(c, Order.BACKWARD)
+        c = self._scrambler_2.encode_char(c, Order.BACKWARD)
+        c = self._scrambler_1.encode_char(c, Order.BACKWARD)
+        c = self._plug_board.encode_char(c, Order.BACKWARD)
         return c
 
     def decode(self, value):

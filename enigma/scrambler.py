@@ -39,10 +39,10 @@ class Scrambler(Encoder):
 
     def encode_char(self, char, order):
         exchange_map = self._exchange_map
-        if order == Order.Backward:
+        if order == Order.BACKWARD:
             exchange_map = self._get_reverse_exchange_map()
         r = exchange_map.get(char)
-        if order == Order.Backward:
+        if order == Order.BACKWARD:
             self._encode_num += 1
             if self.is_rotate():
                 self.rotate(1)

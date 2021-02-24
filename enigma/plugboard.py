@@ -11,7 +11,7 @@ class PlugBoard(Encoder):
 
     def encode_char(self, char, order):
         exchange_map = self._exchange_map
-        if order == Order.Backward:
+        if order == Order.BACKWARD:
             exchange_map = self._get_reverse_exchange_map()
 
         if char in exchange_map:

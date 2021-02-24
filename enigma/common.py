@@ -1,3 +1,3 @@
 class Order:
-    Forward = 1
-    Backward = -1
+    FORWARD = 0
+    BACKWARD = 1
